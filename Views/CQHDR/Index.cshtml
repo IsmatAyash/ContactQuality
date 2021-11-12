@@ -1,0 +1,157 @@
+﻿@model ContactQuality.ViewModels.AgentQualityData
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <form class="navbar-form navbar-left" id="HeaderForm">
+                <div class="form-group">
+                    @Html.DropDownList("AgentLogin", (SelectList)ViewBag.CCAgents, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.TextBox("CQYear", DateTime.Today.Year, new { placeholder = "Year", @class = "form-control" })
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+            <a class="navbar-brand" href='@Url.Action("Create", "CQHDR", new { agentlogin = @Session["AgtLogin"]})'>
+                Create Period: <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
+
+@using (Html.BeginForm())
+{
+    if (Model.Agents != null)
+    {
+        <table class="table table-bordered">
+            <tr>
+                <th style="width:145px">
+                    <div>
+                        <ul class="list-unstyled">
+                            <li>
+                                @Html.Label("Evaluation Periods")
+                            </li>
+                            @foreach (var item in Model.Agents)
+                            {
+                                <li style="font-size:small">
+                                     @Html.ActionLink(item.CQPeriod.CQPeriodName, "Index", "CQHDR",
+                                     new { hdrid = item.CQHDRID, agentLogin = item.AgentLogin, cqyear = item.CQYear },
+                                     null)
+                                    &emsp;
+                                    <a href="@Url.Action("Edit", "CQHDR", new { id = item.CQHDRID })"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    &ensp;
+                                    <a href="@Url.Action("Delete", "CQHDR", new { id = item.CQHDRID })"><span class="glyphicon glyphicon-remove"></span></a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </th>
+                <th>
+                    @if (Model.Contacts != null)
+                    {
+                        <table class="table table-condensed" border="1" style="font-family:Calibri;font-size:small">
+                            <tr style="background-color:lightgray;border-top:thick">
+                                <th>
+                                    <a href="@Url.Action("Create", "CQDET")"><span class="glyphicon glyphicon-plus"></span></a>
+                                </th>
+                                <th style="font-size:medium">@Html.Label("Evaluated Contacts")</th>
+                                <th style="font-size:medium">@Html.Raw(ViewBag.PeriodName)</th>
+                                <th style="font-size:medium;color:darkblue" colspan="7">Final Grade: @ViewBag.FinalGrade    (@ViewBag.Expectation)</th>
+                            </tr>
+                            <tr style="background-color:lightblue">
+                                <th></th>
+                                <th>Date</th>
+                                <th>Title</th>
+                                <th>Channel</th>
+                                <th>Grade</th>
+                                <th>GC</th>
+                                <th>CE</th>
+                                <th>CC</th>
+                                <th>CH</th>
+                                <th>PK</th>
+                                <th>SF</th>
+                                <th>ER</th>
+                                <th>SS</th>
+                                <th>Contact</th>
+                            </tr>
+
+                            @foreach (var item in Model.Contacts)
+                            {
+                                string selectedRow = "";
+                                string gradeStyle = "font-style:italic;font-size:smaller;";
+                                if (item.CQDETID == ViewBag.CQDETID)
+                                {
+                                    selectedRow = "background-color:lightgray; font-size:13px";
+                                }
+                                @Html.HiddenFor(model => item.CQDETID)
+                                <tr style="@selectedRow">
+                                    <td>
+                                        <a href="@Url.Action("Index", "CQKPIGrade", new { detId = item.CQDETID, chid = item.CQCID})"><span class="glyphicon glyphicon-hand-right"></span></a>
+                                        &emsp;
+                                        <a href="@Url.Action("Edit", "CQDET", new { id = item.CQDETID })"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        &ensp;
+                                        <a href="@Url.Action("Delete", "CQDET", new { id = item.CQDETID })"><span class="glyphicon glyphicon-remove"></span></a>
+                                    </td>
+                                    <td>@Html.DisplayFor(model => item.CQEvalDate)</td>
+                                    <td>@Html.DisplayFor(model => item.CQTitle)</td>
+                                    <td>@Html.DisplayFor(model => item.CQChannel.CQChannelName)</td>
+                                    <td style="color:@(item.Totalgrade < 70 ? "darkred" : "darkgreen")">
+                                        @Html.DisplayFor(model => item.Totalgrade)
+                                    </td>
+                                    <td style="@gradeStyle color:@(item.GCGrade * 100 < 70 ? "darkred" : "darkgreen")">
+                                        @Html.DisplayFor(model => item.GCGrade)
+                                    </td>
+                                    <td style="@gradeStyle color:@(item.CEGrade * 100 < 70 ? "darkred" : "darkgreen")">
+                                        @Html.DisplayFor(model => item.CEGrade)
+                                    </td>
+                                    <td style="@gradeStyle color:@(item.CCGrade * 100 < 70 ? "darkred" : "darkgreen")">
+                                        @Html.DisplayFor(model => item.CCGrade)
+                                    </td>
+                                    <td style="@gradeStyle color:@(item.CHGrade * 100 < 70 ? "darkred" : "darkgreen")">
+                                        @Html.DisplayFor(model => item.CHGrade)
+                                    </td>
+                                    <td style="@gradeStyle color:@(item.CHGrade * 100 < 70 ? "darkred" : "darkgreen")">
+                                        @Html.DisplayFor(model => item.PKGrade)
+                                    </td>
+                                    <td style="@gradeStyle color:@(item.SFGrade * 100 < 70 ? "darkred" : "darkgreen")">
+                                        @Html.DisplayFor(model => item.SFGrade)
+                                    </td>
+                                    <td style="@gradeStyle color:@(item.ERGrade * 100 < 70 ? "darkred" : "darkgreen")">
+                                        @Html.DisplayFor(model => item.ERGrade)
+                                    </td>
+                                    <td style="@gradeStyle color:@(item.SSGrade * 100 < 70 ? "darkred" : "darkgreen")">
+                                        @Html.DisplayFor(model => item.SSGrade)
+                                    </td>
+                                    <td>
+                                        @if (item.CQCID == 1)
+                                        {
+                                            <audio controls width="50%" src="~/Content/Recordings/@item.CQRecording"></audio>
+                                        }
+                                        else if (item.CQCID == 3 || item.CQCID == 5)
+                                        {
+                                            @Html.ActionLink("Play", "PlayRecording", "CQHDR", new { clip = @item.CQRecording }, null)
+                                        }
+                                        else
+                                        {
+                                            @Html.DisplayFor(model => item.CQChannel.CQChannelName)
+                                        }
+                                    </td>
+                                </tr>
+                                }
+                            </table>
+                        }
+                </th>
+            </tr>
+        </table>
+    }
+}
+
+
+

@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "_LayoutDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+            <li >
+                <a href='@Url.Action("Dashboard","Home")' style="color:whitesmoke"><i class="fa fa-fw fa-dashboard"></i>   Dashboard</a>
+            </li>
+            <li>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo" style="color:whitesmoke"><i class="fa fa-fw fa-arrows-v"></i> Teams Performance <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo" class="collapse">
+                    <li>
+                        <a href='@Url.Action("Teamboard", "Team", new { teamid = 1 })' style="color:whitesmoke">PionEars</a>
+                    </li>
+                    <li>
+                        <a href='@Url.Action("Teamboard", "Team", new { teamid = 2 })' style="color:whitesmoke">A-Gents</a>
+                    </li>
+                    <li>
+                        <a href='@Url.Action("Teamboard", "Team", new { teamid = 3 })' style="color:whitesmoke">We Bound</a>
+                    </li>
+                    <li>
+                        <a href='@Url.Action("Teamboard", "Team", new { teamid = 5 })' style="color:whitesmoke">Ronys</a>
+                    </li>
+                </ul>
+            </li>
+         </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+</div>
+
+
+

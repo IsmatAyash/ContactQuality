@@ -1,0 +1,224 @@
+﻿@model ContactQuality.ViewModels.DashboardViewModel
+@{
+    ViewBag.Title = "Teamboard";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<!-- Highcharts Charts JavaScript -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<br />
+@if (ViewBag.TeamID == 1)
+{
+    <h4> Team <b>PionEars</b> Performance </h4>
+}
+else if (ViewBag.TeamID == 2)
+{
+    <h4> Team <b>A-Gents</b> Performance </h4>
+}
+else if (ViewBag.TeamID == 5)
+{
+    <h4> Team <b>Ronys</b> Performance </h4>
+}
+else
+{
+    <h4> Team <b>We-Bound</b> Performance </h4>
+}
+<!-- Groups first row -->
+@{
+    string boximage = "";
+    string boxcolor = "";
+    if (Model.GroupGrades.Count == 0)
+    { <h1>No data available to display</h1>}
+    for (int i = 0; i < Model.GroupGrades.Count; i++)
+    {
+        boximage = Model.GroupGrades.Keys.ElementAt(i) == "Greeting Closing" ? "fa fa-smile-o fa-5x" :
+            Model.GroupGrades.Keys.ElementAt(i) == "Contact Etiquette" ? "fa fa-fw fa-tty fa-5x" :
+            Model.GroupGrades.Keys.ElementAt(i) == "Customer Care" ? "fa fa-cc fa-5x" :
+            Model.GroupGrades.Keys.ElementAt(i) == "Contact Handling" ? "fa fa-header fa-5x" :
+            Model.GroupGrades.Keys.ElementAt(i) == "Product Knowledge" ? "fa fa-certificate fa-5x" :
+            Model.GroupGrades.Keys.ElementAt(i) == "Effective Response" ? "fa fa-thumbs-up fa-5x" :
+            Model.GroupGrades.Keys.ElementAt(i) == "Selling Skills" ? "fa fa-usd fa-5x" :
+            Model.GroupGrades.Keys.ElementAt(i) == "System Familiarity" ? "fa fa-gears fa-5x" : "";
+
+        boxcolor = Model.GroupGrades.Keys.ElementAt(i) == "Greeting Closing" ? "panel panel-danger" :
+            Model.GroupGrades.Keys.ElementAt(i) == "Contact Etiquette" ? "panel panel-red" :
+            Model.GroupGrades.Keys.ElementAt(i) == "Customer Care" ? "panel panel-primary" :
+            Model.GroupGrades.Keys.ElementAt(i) == "Contact Handling" ? "panel panel-green" :
+            Model.GroupGrades.Keys.ElementAt(i) == "Product Knowledge" ? "panel panel-success" :
+            Model.GroupGrades.Keys.ElementAt(i) == "Effective Response" ? "panel panel-yellow" :
+            Model.GroupGrades.Keys.ElementAt(i) == "Selling Skills" ? "panel panel-info" :
+            Model.GroupGrades.Keys.ElementAt(i) == "System Familiarity" ? "panel panel-warning" : "";
+
+        if (i == 0 || i == 4)
+        {
+            @: <div class="row">
+            }
+            <div class="col-lg-3 col-md-6">
+                <div class="@boxcolor">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="@boximage"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">@Model.GroupGrades.Values.ElementAt(i).ToString("0%")</div>
+                                <div>@Model.GroupGrades.Keys.ElementAt(i)!</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a data-group-id="@Model.GroupGrades.Keys.ElementAt(i)" data-chart-title="@Model.GroupGrades.Keys.ElementAt(i) details" data-toggle="modal" data-target=".charts-modal" href="#myModal">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            if (i == 3 || i == 7)
+            {
+            @: </div>
+        }
+    }
+}
+
+<div class="col-lg-12">
+    <div class="panel panel-red">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Overall Quality Evolution </h3>
+        </div>
+        <div class="panel-body">
+            <div id="GradesByPeriod-chart"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade charts-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Highcharts Chart in Bootstrap Modal</h4>
+            </div>
+            <div class="js-loading text-center">
+                <h3>Loading...</h3>
+            </div>
+            <div id="GradesByGroup-chart"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.getJSON('@Url.Action("GetTeamGradesByPeriod")', { teamid: @ViewBag.TeamID }, function (chartdata) {
+            var Periods = []
+            var Grades = []
+            for (var i = 0; i < chartdata.length; i++) {
+                Periods.push(chartdata[i].period);
+                Grades.push(chartdata[i].grade);
+            }
+            Highcharts.chart('GradesByPeriod-chart', {
+                chart: {
+                    type: 'spline'
+                },
+                title: {
+                    text: 'Quarterly Grades'
+                },
+                subtitle: {
+                    text: 'Contact Center Quality'
+                },
+                xAxis: {
+                    categories: Periods
+                },
+                yAxis: {
+                    title: {
+                        text: 'Grade'
+                    }
+                },
+                tooltip: {
+                    crosshairs: true,
+                    shared: true
+                },
+                plotOptions: {
+                    spline: {
+                        marker: {
+                            radius: 4,
+                            lineColor: '#666666',
+                            lineWidth: 1
+                        }
+                    }
+                },
+                series: [{ name: 'Period', data: Grades }]
+            });
+        });
+        $('.charts-modal').on('show.bs.modal', function (event) {
+            var charttitle = $(event.relatedTarget).data('chart-title');
+            var gname = $(event.relatedTarget).data('group-id');
+            $("#GradesByGroup-chart").empty();
+            $("#myModalLabel").text(charttitle);
+            $.getJSON('@Url.Action("GetTeamGradesByGroup")', { gname: gname, teamid: @ViewBag.TeamID }, function (chartdata) {
+                var Periods = []
+                var Grades = []
+                for (var i = 0; i < chartdata.length; i++) {
+                    Periods.push(chartdata[i].period);
+                    Grades.push(chartdata[i].grade);
+                }
+                setTimeout(function () {
+                    Highcharts.chart('GradesByGroup-chart', {
+                        chart: {
+                            type: 'spline'
+                        },
+                        title: {
+                            text: 'Quarterly Evolution '
+                        },
+                        subtitle: {
+                            text: gname
+                        },
+                        xAxis: {
+                            categories: Periods,
+                            tickmarkPlacement: 'on',
+                            title: {
+                                enabled: false
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            },
+                            labels: {
+                                formatter: function () {
+                                    return this.value / 1000;
+                                }
+                            }
+                        },
+                        tooltip: {
+                            split: true,
+                            valueSuffix: ' /100'
+                        },
+                        plotOptions: {
+                            area: {
+                                stacking: 'normal',
+                                lineColor: '#666666',
+                                lineWidth: 1,
+                                marker: {
+                                    lineWidth: 1,
+                                    lineColor: '#666666'
+                                }
+                            }
+                        },
+                        series: [{ name: 'Grade', data: Grades }]
+                    });
+                    $('.js-loading').addClass('hidden');
+                }, 1000);
+            });
+        });
+    });
+</script>

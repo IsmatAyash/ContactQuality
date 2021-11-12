@@ -1,0 +1,71 @@
+﻿@model ContactQuality.Models.CQDET
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Are you sure you want to delete this contact for @Html.Raw(Session["AgtName"].ToString()) ?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CQEvalDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CQEvalDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CQEvaluator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CQEvaluator)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CQTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CQTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CQRecording)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CQRecording)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CQChannel.CQChannelName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CQChannel.CQChannelName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CQHDR.AgentLogin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CQHDR.AgentLogin)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a href="@Url.Action("Index", "CQHDR", new { hdrId = Model.CQHDRID, detId = Model.CQDETID, agentLogin = Model.CQHDR.AgentLogin})"><span class="glyphicon glyphicon-arrow-left"> Back</span></a>
+@*            @Html.ActionLink("Back to List", "Index")*@
+        </div>
+    }
+</div>

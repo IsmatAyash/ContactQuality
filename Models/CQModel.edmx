@@ -1,0 +1,1048 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CQModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Competency">
+          <Key>
+            <PropertyRef Name="CompID" />
+          </Key>
+          <Property Name="CompID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ApplyFor" Type="nchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="CQChannel">
+          <Key>
+            <PropertyRef Name="CQCID" />
+          </Key>
+          <Property Name="CQCID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CQChannelName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CQDET">
+          <Key>
+            <PropertyRef Name="CQDETID" />
+          </Key>
+          <Property Name="CQDETID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CQHDRID" Type="int" />
+          <Property Name="CQCID" Type="int" Nullable="false" />
+          <Property Name="GCGrade" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="CEGrade" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="CCGrade" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="CHGrade" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="PKGrade" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="SFGrade" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="ERGrade" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="SSGrade" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="CQEvalDate" Type="datetime" />
+          <Property Name="CQEvaluator" Type="varchar" MaxLength="50" />
+          <Property Name="CQTitle" Type="varchar" MaxLength="100" />
+          <Property Name="CQRecording" Type="varchar" MaxLength="100" />
+          <Property Name="EvaluatorNote" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CQGKPI">
+          <Key>
+            <PropertyRef Name="CQGKPIID" />
+          </Key>
+          <Property Name="CQGKPIID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CQGKPIName" Type="varchar" MaxLength="100" />
+          <Property Name="CQGKPIInitials" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="CQGKPIChannel">
+          <Key>
+            <PropertyRef Name="CQGKPICID" />
+          </Key>
+          <Property Name="CQGKPICID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CQGKPIID" Type="int" />
+          <Property Name="CQCID" Type="int" />
+          <Property Name="InWgt" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="OutWgt" Type="decimal" Precision="7" Scale="2" />
+        </EntityType>
+        <EntityType Name="CQHDR">
+          <Key>
+            <PropertyRef Name="CQHDRID" />
+          </Key>
+          <Property Name="CQHDRID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgentLogin" Type="nvarchar" MaxLength="16" />
+          <Property Name="CQYear" Type="int" />
+          <Property Name="CQPID" Type="int" />
+        </EntityType>
+        <EntityType Name="CQKPI">
+          <Key>
+            <PropertyRef Name="CQKPIID" />
+          </Key>
+          <Property Name="CQKPIID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CQGKPIID" Type="int" Nullable="false" />
+          <Property Name="CQKPIName" Type="varchar" MaxLength="150" />
+          <Property Name="CQKPIType" Type="nchar" MaxLength="10" />
+          <Property Name="CQKPIMaxGrade" Type="int" />
+          <Property Name="RadioBtnID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CQKPIChannel">
+          <Key>
+            <PropertyRef Name="CQKPICID" />
+          </Key>
+          <Property Name="CQKPICID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CQKPIID" Type="int" />
+          <Property Name="CQCID" Type="int" />
+          <Property Name="InWgt" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="OutWgt" Type="decimal" Precision="7" Scale="2" />
+        </EntityType>
+        <EntityType Name="CQKPIGrade">
+          <Key>
+            <PropertyRef Name="CQKPIGID" />
+          </Key>
+          <Property Name="CQKPIGID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CQDETID" Type="int" Nullable="false" />
+          <Property Name="CQKPIID" Type="int" Nullable="false" />
+          <Property Name="CQGrade" Type="int" />
+          <Property Name="EvaluatorRemark" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="CQPeriod">
+          <Key>
+            <PropertyRef Name="CQPID" />
+          </Key>
+          <Property Name="CQPID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CQPeriodName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CQTNeeds">
+          <Key>
+            <PropertyRef Name="TNID" />
+          </Key>
+          <Property Name="TNID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompID" Type="int" />
+          <Property Name="AgentLogin" Type="nvarchar" MaxLength="16" />
+          <Property Name="TNLevel" Type="nvarchar" MaxLength="25" />
+          <Property Name="TNStatus" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="AgentLogin" />
+          </Key>
+          <Property Name="AgentLogin" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CRMUser" Type="nvarchar" MaxLength="15" />
+          <Property Name="WindowsUser" Type="nvarchar" MaxLength="50" />
+          <Property Name="TitleID" Type="int" Nullable="false" />
+          <Property Name="TeamID" Type="int" Nullable="false" />
+          <Property Name="JobTitle" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="TeamID" />
+          </Key>
+          <Property Name="TeamID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AgentLogin" Type="nvarchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="TitleID" />
+          </Key>
+          <Property Name="TitleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TitleName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_CQDET_CQChannel">
+          <End Role="CQChannel" Type="Self.CQChannel" Multiplicity="1" />
+          <End Role="CQDET" Type="Self.CQDET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQChannel">
+              <PropertyRef Name="CQCID" />
+            </Principal>
+            <Dependent Role="CQDET">
+              <PropertyRef Name="CQCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQDET_CQHDR">
+          <End Role="CQHDR" Type="Self.CQHDR" Multiplicity="0..1" />
+          <End Role="CQDET" Type="Self.CQDET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQHDR">
+              <PropertyRef Name="CQHDRID" />
+            </Principal>
+            <Dependent Role="CQDET">
+              <PropertyRef Name="CQHDRID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQGKPIChannel_CQChannel">
+          <End Role="CQChannel" Type="Self.CQChannel" Multiplicity="0..1" />
+          <End Role="CQGKPIChannel" Type="Self.CQGKPIChannel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQChannel">
+              <PropertyRef Name="CQCID" />
+            </Principal>
+            <Dependent Role="CQGKPIChannel">
+              <PropertyRef Name="CQCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQGKPIChannel_CQGKPI">
+          <End Role="CQGKPI" Type="Self.CQGKPI" Multiplicity="0..1" />
+          <End Role="CQGKPIChannel" Type="Self.CQGKPIChannel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQGKPI">
+              <PropertyRef Name="CQGKPIID" />
+            </Principal>
+            <Dependent Role="CQGKPIChannel">
+              <PropertyRef Name="CQGKPIID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQHDR_CQPeriod">
+          <End Role="CQPeriod" Type="Self.CQPeriod" Multiplicity="0..1" />
+          <End Role="CQHDR" Type="Self.CQHDR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQPeriod">
+              <PropertyRef Name="CQPID" />
+            </Principal>
+            <Dependent Role="CQHDR">
+              <PropertyRef Name="CQPID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQHDR_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="CQHDR" Type="Self.CQHDR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="AgentLogin" />
+            </Principal>
+            <Dependent Role="CQHDR">
+              <PropertyRef Name="AgentLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQKPI_CQGKPI">
+          <End Role="CQGKPI" Type="Self.CQGKPI" Multiplicity="1" />
+          <End Role="CQKPI" Type="Self.CQKPI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQGKPI">
+              <PropertyRef Name="CQGKPIID" />
+            </Principal>
+            <Dependent Role="CQKPI">
+              <PropertyRef Name="CQGKPIID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQKPIChannel_CQChannel">
+          <End Role="CQChannel" Type="Self.CQChannel" Multiplicity="0..1" />
+          <End Role="CQKPIChannel" Type="Self.CQKPIChannel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQChannel">
+              <PropertyRef Name="CQCID" />
+            </Principal>
+            <Dependent Role="CQKPIChannel">
+              <PropertyRef Name="CQCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQKPIChannel_CQKPI">
+          <End Role="CQKPI" Type="Self.CQKPI" Multiplicity="0..1" />
+          <End Role="CQKPIChannel" Type="Self.CQKPIChannel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQKPI">
+              <PropertyRef Name="CQKPIID" />
+            </Principal>
+            <Dependent Role="CQKPIChannel">
+              <PropertyRef Name="CQKPIID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQKPIGrade_CQDET">
+          <End Role="CQDET" Type="Self.CQDET" Multiplicity="1" />
+          <End Role="CQKPIGrade" Type="Self.CQKPIGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQDET">
+              <PropertyRef Name="CQDETID" />
+            </Principal>
+            <Dependent Role="CQKPIGrade">
+              <PropertyRef Name="CQDETID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQKPIGrade_CQKPI">
+          <End Role="CQKPI" Type="Self.CQKPI" Multiplicity="1" />
+          <End Role="CQKPIGrade" Type="Self.CQKPIGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQKPI">
+              <PropertyRef Name="CQKPIID" />
+            </Principal>
+            <Dependent Role="CQKPIGrade">
+              <PropertyRef Name="CQKPIID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQTNeeds_Competency">
+          <End Role="Competency" Type="Self.Competency" Multiplicity="0..1" />
+          <End Role="CQTNeeds" Type="Self.CQTNeeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competency">
+              <PropertyRef Name="CompID" />
+            </Principal>
+            <Dependent Role="CQTNeeds">
+              <PropertyRef Name="CompID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQTNeeds_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="CQTNeeds" Type="Self.CQTNeeds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="AgentLogin" />
+            </Principal>
+            <Dependent Role="CQTNeeds">
+              <PropertyRef Name="AgentLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Title">
+          <End Role="Title" Type="Self.Title" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Title">
+              <PropertyRef Name="TitleID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="TitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="AgentLogin" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="AgentLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CQModelStoreContainer">
+          <EntitySet Name="Competency" EntityType="Self.Competency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CQChannel" EntityType="Self.CQChannel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CQDET" EntityType="Self.CQDET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CQGKPI" EntityType="Self.CQGKPI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CQGKPIChannel" EntityType="Self.CQGKPIChannel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CQHDR" EntityType="Self.CQHDR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CQKPI" EntityType="Self.CQKPI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CQKPIChannel" EntityType="Self.CQKPIChannel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CQKPIGrade" EntityType="Self.CQKPIGrade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CQPeriod" EntityType="Self.CQPeriod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CQTNeeds" EntityType="Self.CQTNeeds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CQDET_CQChannel" Association="Self.FK_CQDET_CQChannel">
+            <End Role="CQChannel" EntitySet="CQChannel" />
+            <End Role="CQDET" EntitySet="CQDET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQDET_CQHDR" Association="Self.FK_CQDET_CQHDR">
+            <End Role="CQHDR" EntitySet="CQHDR" />
+            <End Role="CQDET" EntitySet="CQDET" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQGKPIChannel_CQChannel" Association="Self.FK_CQGKPIChannel_CQChannel">
+            <End Role="CQChannel" EntitySet="CQChannel" />
+            <End Role="CQGKPIChannel" EntitySet="CQGKPIChannel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQGKPIChannel_CQGKPI" Association="Self.FK_CQGKPIChannel_CQGKPI">
+            <End Role="CQGKPI" EntitySet="CQGKPI" />
+            <End Role="CQGKPIChannel" EntitySet="CQGKPIChannel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQHDR_CQPeriod" Association="Self.FK_CQHDR_CQPeriod">
+            <End Role="CQPeriod" EntitySet="CQPeriod" />
+            <End Role="CQHDR" EntitySet="CQHDR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQHDR_Employee" Association="Self.FK_CQHDR_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="CQHDR" EntitySet="CQHDR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQKPI_CQGKPI" Association="Self.FK_CQKPI_CQGKPI">
+            <End Role="CQGKPI" EntitySet="CQGKPI" />
+            <End Role="CQKPI" EntitySet="CQKPI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQKPIChannel_CQChannel" Association="Self.FK_CQKPIChannel_CQChannel">
+            <End Role="CQChannel" EntitySet="CQChannel" />
+            <End Role="CQKPIChannel" EntitySet="CQKPIChannel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQKPIChannel_CQKPI" Association="Self.FK_CQKPIChannel_CQKPI">
+            <End Role="CQKPI" EntitySet="CQKPI" />
+            <End Role="CQKPIChannel" EntitySet="CQKPIChannel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQKPIGrade_CQDET" Association="Self.FK_CQKPIGrade_CQDET">
+            <End Role="CQDET" EntitySet="CQDET" />
+            <End Role="CQKPIGrade" EntitySet="CQKPIGrade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQKPIGrade_CQKPI" Association="Self.FK_CQKPIGrade_CQKPI">
+            <End Role="CQKPI" EntitySet="CQKPI" />
+            <End Role="CQKPIGrade" EntitySet="CQKPIGrade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQTNeeds_Competency" Association="Self.FK_CQTNeeds_Competency">
+            <End Role="Competency" EntitySet="Competency" />
+            <End Role="CQTNeeds" EntitySet="CQTNeeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQTNeeds_Employee" Association="Self.FK_CQTNeeds_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="CQTNeeds" EntitySet="CQTNeeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Team" Association="Self.FK_Employee_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Title" Association="Self.FK_Employee_Title">
+            <End Role="Title" EntitySet="Title" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_Employee" Association="Self.FK_Team_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Team" EntitySet="Team" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CQModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CQChannel">
+          <Key>
+            <PropertyRef Name="CQCID" />
+          </Key>
+          <Property Name="CQCID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CQChannelName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CQDETs" Relationship="CQModel.FK_CQDET_CQChannel" FromRole="CQChannel" ToRole="CQDET" />
+          <NavigationProperty Name="CQGKPIChannels" Relationship="CQModel.FK_CQGKPIChannel_CQChannel" FromRole="CQChannel" ToRole="CQGKPIChannel" />
+          <NavigationProperty Name="CQKPIChannels" Relationship="CQModel.FK_CQKPIChannel_CQChannel" FromRole="CQChannel" ToRole="CQKPIChannel" />
+        </EntityType>
+        <EntityType Name="CQHDR">
+          <Key>
+            <PropertyRef Name="CQHDRID" />
+          </Key>
+          <Property Name="CQHDRID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgentLogin" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="CQYear" Type="Int32" />
+          <Property Name="CQPID" Type="Int32" />
+          <NavigationProperty Name="CQPeriod" Relationship="Self.FK_CQHDR_CQPeriod" FromRole="CQHDR" ToRole="CQPeriod" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_CQHDR_Employee" FromRole="CQHDR" ToRole="Employee" />
+          <NavigationProperty Name="CQDETs" Relationship="CQModel.FK_CQDET_CQHDR" FromRole="CQHDR" ToRole="CQDET" />
+        </EntityType>
+        <EntityType Name="CQPeriod">
+          <Key>
+            <PropertyRef Name="CQPID" />
+          </Key>
+          <Property Name="CQPID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CQPeriodName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CQHDRs" Relationship="Self.FK_CQHDR_CQPeriod" FromRole="CQPeriod" ToRole="CQHDR" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="AgentLogin" />
+          </Key>
+          <Property Name="AgentLogin" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CRMUser" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="WindowsUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TitleID" Type="Int32" Nullable="false" />
+          <Property Name="TeamID" Type="Int32" Nullable="false" />
+          <Property Name="JobTitle" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CQHDRs" Relationship="Self.FK_CQHDR_Employee" FromRole="Employee" ToRole="CQHDR" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_Employee_Team" FromRole="Employee" ToRole="Team" />
+          <NavigationProperty Name="Title" Relationship="Self.FK_Employee_Title" FromRole="Employee" ToRole="Title" />
+          <NavigationProperty Name="Teams" Relationship="Self.FK_Team_Employee" FromRole="Employee" ToRole="Team" />
+          <NavigationProperty Name="CQTNeeds" Relationship="CQModel.FK_CQTNeeds_Employee" FromRole="Employee" ToRole="CQTNeed" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="TeamID" />
+          </Key>
+          <Property Name="TeamID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AgentLogin" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Team" FromRole="Team" ToRole="Employee" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Team_Employee" FromRole="Team" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="TitleID" />
+          </Key>
+          <Property Name="TitleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TitleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employee_Title" FromRole="Title" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_CQHDR_CQPeriod">
+          <End Role="CQPeriod" Type="Self.CQPeriod" Multiplicity="0..1" />
+          <End Role="CQHDR" Type="Self.CQHDR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQPeriod">
+              <PropertyRef Name="CQPID" />
+            </Principal>
+            <Dependent Role="CQHDR">
+              <PropertyRef Name="CQPID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQHDR_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="CQHDR" Type="Self.CQHDR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="AgentLogin" />
+            </Principal>
+            <Dependent Role="CQHDR">
+              <PropertyRef Name="AgentLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="TeamID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="TeamID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Title">
+          <End Role="Title" Type="Self.Title" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Title">
+              <PropertyRef Name="TitleID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="TitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Team" Type="Self.Team" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="AgentLogin" />
+            </Principal>
+            <Dependent Role="Team">
+              <PropertyRef Name="AgentLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CQContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CQChannels" EntityType="Self.CQChannel" />
+          <EntitySet Name="CQHDRs" EntityType="Self.CQHDR" />
+          <EntitySet Name="CQPeriods" EntityType="Self.CQPeriod" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+          <EntitySet Name="Titles" EntityType="Self.Title" />
+          <AssociationSet Name="FK_CQHDR_CQPeriod" Association="Self.FK_CQHDR_CQPeriod">
+            <End Role="CQPeriod" EntitySet="CQPeriods" />
+            <End Role="CQHDR" EntitySet="CQHDRs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQHDR_Employee" Association="Self.FK_CQHDR_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="CQHDR" EntitySet="CQHDRs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Team" Association="Self.FK_Employee_Team">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Title" Association="Self.FK_Employee_Title">
+            <End Role="Title" EntitySet="Titles" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_Employee" Association="Self.FK_Team_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Team" EntitySet="Teams" />
+          </AssociationSet>
+          <EntitySet Name="CQKPIGrades" EntityType="CQModel.CQKPIGrade" />
+          <EntitySet Name="CQKPIs" EntityType="CQModel.CQKPI" />
+          <AssociationSet Name="FK_CQKPIGrade_CQKPI" Association="CQModel.FK_CQKPIGrade_CQKPI">
+            <End Role="CQKPI" EntitySet="CQKPIs" />
+            <End Role="CQKPIGrade" EntitySet="CQKPIGrades" />
+          </AssociationSet>
+          <EntitySet Name="CQDETs" EntityType="CQModel.CQDET" />
+          <AssociationSet Name="FK_CQDET_CQChannel" Association="CQModel.FK_CQDET_CQChannel">
+            <End Role="CQChannel" EntitySet="CQChannels" />
+            <End Role="CQDET" EntitySet="CQDETs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQDET_CQHDR" Association="CQModel.FK_CQDET_CQHDR">
+            <End Role="CQHDR" EntitySet="CQHDRs" />
+            <End Role="CQDET" EntitySet="CQDETs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQKPIGrade_CQDET" Association="CQModel.FK_CQKPIGrade_CQDET">
+            <End Role="CQDET" EntitySet="CQDETs" />
+            <End Role="CQKPIGrade" EntitySet="CQKPIGrades" />
+          </AssociationSet>
+          <EntitySet Name="CQGKPIs" EntityType="CQModel.CQGKPI" />
+          <AssociationSet Name="FK_CQKPI_CQGKPI" Association="CQModel.FK_CQKPI_CQGKPI">
+            <End Role="CQGKPI" EntitySet="CQGKPIs" />
+            <End Role="CQKPI" EntitySet="CQKPIs" />
+          </AssociationSet>
+          <EntitySet Name="Competencies" EntityType="CQModel.Competency" />
+          <EntitySet Name="CQGKPIChannels" EntityType="CQModel.CQGKPIChannel" />
+          <AssociationSet Name="FK_CQGKPIChannel_CQChannel" Association="CQModel.FK_CQGKPIChannel_CQChannel">
+            <End Role="CQChannel" EntitySet="CQChannels" />
+            <End Role="CQGKPIChannel" EntitySet="CQGKPIChannels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQGKPIChannel_CQGKPI" Association="CQModel.FK_CQGKPIChannel_CQGKPI">
+            <End Role="CQGKPI" EntitySet="CQGKPIs" />
+            <End Role="CQGKPIChannel" EntitySet="CQGKPIChannels" />
+          </AssociationSet>
+          <EntitySet Name="CQKPIChannels" EntityType="CQModel.CQKPIChannel" />
+          <AssociationSet Name="FK_CQKPIChannel_CQChannel" Association="CQModel.FK_CQKPIChannel_CQChannel">
+            <End Role="CQChannel" EntitySet="CQChannels" />
+            <End Role="CQKPIChannel" EntitySet="CQKPIChannels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQKPIChannel_CQKPI" Association="CQModel.FK_CQKPIChannel_CQKPI">
+            <End Role="CQKPI" EntitySet="CQKPIs" />
+            <End Role="CQKPIChannel" EntitySet="CQKPIChannels" />
+          </AssociationSet>
+          <EntitySet Name="CQTNeeds" EntityType="CQModel.CQTNeed" />
+          <AssociationSet Name="FK_CQTNeeds_Competency" Association="CQModel.FK_CQTNeeds_Competency">
+            <End Role="Competency" EntitySet="Competencies" />
+            <End Role="CQTNeed" EntitySet="CQTNeeds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CQTNeeds_Employee" Association="CQModel.FK_CQTNeeds_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="CQTNeed" EntitySet="CQTNeeds" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="CQKPIGrade">
+          <Key>
+            <PropertyRef Name="CQKPIGID" />
+          </Key>
+          <Property Name="CQKPIGID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CQDETID" Type="Int32" Nullable="false" />
+          <Property Name="CQKPIID" Type="Int32" Nullable="false" />
+          <Property Name="CQGrade" Type="Int32" />
+          <Property Name="EvaluatorRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CQKPI" Relationship="CQModel.FK_CQKPIGrade_CQKPI" FromRole="CQKPIGrade" ToRole="CQKPI" />
+          <NavigationProperty Name="CQDET" Relationship="CQModel.FK_CQKPIGrade_CQDET" FromRole="CQKPIGrade" ToRole="CQDET" />
+        </EntityType>
+        <EntityType Name="CQKPI">
+          <Key>
+            <PropertyRef Name="CQKPIID" />
+          </Key>
+          <Property Name="CQKPIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CQGKPIID" Type="Int32" Nullable="false" />
+          <Property Name="CQKPIName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CQKPIType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CQKPIMaxGrade" Type="Int32" />
+          <Property Name="RadioBtnID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CQKPIGrades" Relationship="CQModel.FK_CQKPIGrade_CQKPI" FromRole="CQKPI" ToRole="CQKPIGrade" />
+          <NavigationProperty Name="CQGKPI" Relationship="CQModel.FK_CQKPI_CQGKPI" FromRole="CQKPI" ToRole="CQGKPI" />
+          <NavigationProperty Name="CQKPIChannels" Relationship="CQModel.FK_CQKPIChannel_CQKPI" FromRole="CQKPI" ToRole="CQKPIChannel" />
+        </EntityType>
+        <Association Name="FK_CQKPIGrade_CQKPI">
+          <End Type="CQModel.CQKPI" Role="CQKPI" Multiplicity="1" />
+          <End Type="CQModel.CQKPIGrade" Role="CQKPIGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQKPI">
+              <PropertyRef Name="CQKPIID" />
+            </Principal>
+            <Dependent Role="CQKPIGrade">
+              <PropertyRef Name="CQKPIID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CQDET">
+          <Key>
+            <PropertyRef Name="CQDETID" />
+          </Key>
+          <Property Name="CQDETID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CQHDRID" Type="Int32" />
+          <Property Name="CQCID" Type="Int32" Nullable="false" />
+          <Property Name="GCGrade" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="CEGrade" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="CCGrade" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="CHGrade" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="PKGrade" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="SFGrade" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="ERGrade" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="SSGrade" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="CQEvalDate" Type="DateTime" Precision="3" />
+          <Property Name="CQEvaluator" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CQTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CQRecording" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CQChannel" Relationship="CQModel.FK_CQDET_CQChannel" FromRole="CQDET" ToRole="CQChannel" />
+          <NavigationProperty Name="CQHDR" Relationship="CQModel.FK_CQDET_CQHDR" FromRole="CQDET" ToRole="CQHDR" />
+          <NavigationProperty Name="CQKPIGrades" Relationship="CQModel.FK_CQKPIGrade_CQDET" FromRole="CQDET" ToRole="CQKPIGrade" />
+          <Property Name="EvaluatorNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_CQDET_CQChannel">
+          <End Type="CQModel.CQChannel" Role="CQChannel" Multiplicity="1" />
+          <End Type="CQModel.CQDET" Role="CQDET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQChannel">
+              <PropertyRef Name="CQCID" />
+            </Principal>
+            <Dependent Role="CQDET">
+              <PropertyRef Name="CQCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQDET_CQHDR">
+          <End Type="CQModel.CQHDR" Role="CQHDR" Multiplicity="0..1" />
+          <End Type="CQModel.CQDET" Role="CQDET" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQHDR">
+              <PropertyRef Name="CQHDRID" />
+            </Principal>
+            <Dependent Role="CQDET">
+              <PropertyRef Name="CQHDRID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQKPIGrade_CQDET">
+          <End Type="CQModel.CQDET" Role="CQDET" Multiplicity="1" />
+          <End Type="CQModel.CQKPIGrade" Role="CQKPIGrade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQDET">
+              <PropertyRef Name="CQDETID" />
+            </Principal>
+            <Dependent Role="CQKPIGrade">
+              <PropertyRef Name="CQDETID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CQGKPI">
+          <Key>
+            <PropertyRef Name="CQGKPIID" />
+          </Key>
+          <Property Name="CQGKPIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CQGKPIName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CQGKPIInitials" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CQKPIs" Relationship="CQModel.FK_CQKPI_CQGKPI" FromRole="CQGKPI" ToRole="CQKPI" />
+          <NavigationProperty Name="CQGKPIChannels" Relationship="CQModel.FK_CQGKPIChannel_CQGKPI" FromRole="CQGKPI" ToRole="CQGKPIChannel" />
+        </EntityType>
+        <Association Name="FK_CQKPI_CQGKPI">
+          <End Type="CQModel.CQGKPI" Role="CQGKPI" Multiplicity="1" />
+          <End Type="CQModel.CQKPI" Role="CQKPI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQGKPI">
+              <PropertyRef Name="CQGKPIID" />
+            </Principal>
+            <Dependent Role="CQKPI">
+              <PropertyRef Name="CQGKPIID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Competency">
+          <Key>
+            <PropertyRef Name="CompID" />
+          </Key>
+          <Property Name="CompID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ApplyFor" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="CQTNeeds" Relationship="CQModel.FK_CQTNeeds_Competency" FromRole="Competency" ToRole="CQTNeed" />
+        </EntityType>
+        <EntityType Name="CQGKPIChannel">
+          <Key>
+            <PropertyRef Name="CQGKPICID" />
+          </Key>
+          <Property Name="CQGKPICID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CQGKPIID" Type="Int32" />
+          <Property Name="CQCID" Type="Int32" />
+          <Property Name="InWgt" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="OutWgt" Type="Decimal" Precision="7" Scale="2" />
+          <NavigationProperty Name="CQChannel" Relationship="CQModel.FK_CQGKPIChannel_CQChannel" FromRole="CQGKPIChannel" ToRole="CQChannel" />
+          <NavigationProperty Name="CQGKPI" Relationship="CQModel.FK_CQGKPIChannel_CQGKPI" FromRole="CQGKPIChannel" ToRole="CQGKPI" />
+        </EntityType>
+        <Association Name="FK_CQGKPIChannel_CQChannel">
+          <End Type="CQModel.CQChannel" Role="CQChannel" Multiplicity="0..1" />
+          <End Type="CQModel.CQGKPIChannel" Role="CQGKPIChannel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQChannel">
+              <PropertyRef Name="CQCID" />
+            </Principal>
+            <Dependent Role="CQGKPIChannel">
+              <PropertyRef Name="CQCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQGKPIChannel_CQGKPI">
+          <End Type="CQModel.CQGKPI" Role="CQGKPI" Multiplicity="0..1" />
+          <End Type="CQModel.CQGKPIChannel" Role="CQGKPIChannel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQGKPI">
+              <PropertyRef Name="CQGKPIID" />
+            </Principal>
+            <Dependent Role="CQGKPIChannel">
+              <PropertyRef Name="CQGKPIID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CQKPIChannel">
+          <Key>
+            <PropertyRef Name="CQKPICID" />
+          </Key>
+          <Property Name="CQKPICID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CQKPIID" Type="Int32" />
+          <Property Name="CQCID" Type="Int32" />
+          <Property Name="InWgt" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="OutWgt" Type="Decimal" Precision="7" Scale="2" />
+          <NavigationProperty Name="CQChannel" Relationship="CQModel.FK_CQKPIChannel_CQChannel" FromRole="CQKPIChannel" ToRole="CQChannel" />
+          <NavigationProperty Name="CQKPI" Relationship="CQModel.FK_CQKPIChannel_CQKPI" FromRole="CQKPIChannel" ToRole="CQKPI" />
+        </EntityType>
+        <Association Name="FK_CQKPIChannel_CQChannel">
+          <End Type="CQModel.CQChannel" Role="CQChannel" Multiplicity="0..1" />
+          <End Type="CQModel.CQKPIChannel" Role="CQKPIChannel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQChannel">
+              <PropertyRef Name="CQCID" />
+            </Principal>
+            <Dependent Role="CQKPIChannel">
+              <PropertyRef Name="CQCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQKPIChannel_CQKPI">
+          <End Type="CQModel.CQKPI" Role="CQKPI" Multiplicity="0..1" />
+          <End Type="CQModel.CQKPIChannel" Role="CQKPIChannel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CQKPI">
+              <PropertyRef Name="CQKPIID" />
+            </Principal>
+            <Dependent Role="CQKPIChannel">
+              <PropertyRef Name="CQKPIID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CQTNeed">
+          <Key>
+            <PropertyRef Name="TNID" />
+          </Key>
+          <Property Name="TNID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompID" Type="Int32" />
+          <Property Name="AgentLogin" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="TNLevel" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="TNStatus" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Competency" Relationship="CQModel.FK_CQTNeeds_Competency" FromRole="CQTNeed" ToRole="Competency" />
+          <NavigationProperty Name="Employee" Relationship="CQModel.FK_CQTNeeds_Employee" FromRole="CQTNeed" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_CQTNeeds_Competency">
+          <End Type="CQModel.Competency" Role="Competency" Multiplicity="0..1" />
+          <End Type="CQModel.CQTNeed" Role="CQTNeed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competency">
+              <PropertyRef Name="CompID" />
+            </Principal>
+            <Dependent Role="CQTNeed">
+              <PropertyRef Name="CompID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CQTNeeds_Employee">
+          <End Type="CQModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="CQModel.CQTNeed" Role="CQTNeed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="AgentLogin" />
+            </Principal>
+            <Dependent Role="CQTNeed">
+              <PropertyRef Name="AgentLogin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CQModelStoreContainer" CdmEntityContainer="CQContext">
+          <EntitySetMapping Name="CQChannels">
+            <EntityTypeMapping TypeName="CQModel.CQChannel">
+              <MappingFragment StoreEntitySet="CQChannel">
+                <ScalarProperty Name="CQCID" ColumnName="CQCID" />
+                <ScalarProperty Name="CQChannelName" ColumnName="CQChannelName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CQHDRs">
+            <EntityTypeMapping TypeName="CQModel.CQHDR">
+              <MappingFragment StoreEntitySet="CQHDR">
+                <ScalarProperty Name="CQHDRID" ColumnName="CQHDRID" />
+                <ScalarProperty Name="AgentLogin" ColumnName="AgentLogin" />
+                <ScalarProperty Name="CQYear" ColumnName="CQYear" />
+                <ScalarProperty Name="CQPID" ColumnName="CQPID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CQPeriods">
+            <EntityTypeMapping TypeName="CQModel.CQPeriod">
+              <MappingFragment StoreEntitySet="CQPeriod">
+                <ScalarProperty Name="CQPID" ColumnName="CQPID" />
+                <ScalarProperty Name="CQPeriodName" ColumnName="CQPeriodName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="CQModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="AgentLogin" ColumnName="AgentLogin" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="CRMUser" ColumnName="CRMUser" />
+                <ScalarProperty Name="WindowsUser" ColumnName="WindowsUser" />
+                <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="CQModel.Team">
+              <MappingFragment StoreEntitySet="Team">
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+                <ScalarProperty Name="AgentLogin" ColumnName="AgentLogin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Titles">
+            <EntityTypeMapping TypeName="CQModel.Title">
+              <MappingFragment StoreEntitySet="Title">
+                <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+                <ScalarProperty Name="TitleName" ColumnName="TitleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CQKPIGrades">
+            <EntityTypeMapping TypeName="CQModel.CQKPIGrade">
+              <MappingFragment StoreEntitySet="CQKPIGrade">
+                <ScalarProperty Name="EvaluatorRemark" ColumnName="EvaluatorRemark" />
+                <ScalarProperty Name="CQGrade" ColumnName="CQGrade" />
+                <ScalarProperty Name="CQKPIID" ColumnName="CQKPIID" />
+                <ScalarProperty Name="CQDETID" ColumnName="CQDETID" />
+                <ScalarProperty Name="CQKPIGID" ColumnName="CQKPIGID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CQKPIs">
+            <EntityTypeMapping TypeName="CQModel.CQKPI">
+              <MappingFragment StoreEntitySet="CQKPI">
+                <ScalarProperty Name="RadioBtnID" ColumnName="RadioBtnID" />
+                <ScalarProperty Name="CQKPIMaxGrade" ColumnName="CQKPIMaxGrade" />
+                <ScalarProperty Name="CQKPIType" ColumnName="CQKPIType" />
+                <ScalarProperty Name="CQKPIName" ColumnName="CQKPIName" />
+                <ScalarProperty Name="CQGKPIID" ColumnName="CQGKPIID" />
+                <ScalarProperty Name="CQKPIID" ColumnName="CQKPIID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CQDETs">
+            <EntityTypeMapping TypeName="CQModel.CQDET">
+              <MappingFragment StoreEntitySet="CQDET">
+                <ScalarProperty Name="EvaluatorNote" ColumnName="EvaluatorNote" />
+                <ScalarProperty Name="CQRecording" ColumnName="CQRecording" />
+                <ScalarProperty Name="CQTitle" ColumnName="CQTitle" />
+                <ScalarProperty Name="CQEvaluator" ColumnName="CQEvaluator" />
+                <ScalarProperty Name="CQEvalDate" ColumnName="CQEvalDate" />
+                <ScalarProperty Name="SSGrade" ColumnName="SSGrade" />
+                <ScalarProperty Name="ERGrade" ColumnName="ERGrade" />
+                <ScalarProperty Name="SFGrade" ColumnName="SFGrade" />
+                <ScalarProperty Name="PKGrade" ColumnName="PKGrade" />
+                <ScalarProperty Name="CHGrade" ColumnName="CHGrade" />
+                <ScalarProperty Name="CCGrade" ColumnName="CCGrade" />
+                <ScalarProperty Name="CEGrade" ColumnName="CEGrade" />
+                <ScalarProperty Name="GCGrade" ColumnName="GCGrade" />
+                <ScalarProperty Name="CQCID" ColumnName="CQCID" />
+                <ScalarProperty Name="CQHDRID" ColumnName="CQHDRID" />
+                <ScalarProperty Name="CQDETID" ColumnName="CQDETID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CQGKPIs">
+            <EntityTypeMapping TypeName="CQModel.CQGKPI">
+              <MappingFragment StoreEntitySet="CQGKPI">
+                <ScalarProperty Name="CQGKPIInitials" ColumnName="CQGKPIInitials" />
+                <ScalarProperty Name="CQGKPIName" ColumnName="CQGKPIName" />
+                <ScalarProperty Name="CQGKPIID" ColumnName="CQGKPIID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Competencies">
+            <EntityTypeMapping TypeName="CQModel.Competency">
+              <MappingFragment StoreEntitySet="Competency">
+                <ScalarProperty Name="ApplyFor" ColumnName="ApplyFor" />
+                <ScalarProperty Name="CompName" ColumnName="CompName" />
+                <ScalarProperty Name="CompID" ColumnName="CompID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CQGKPIChannels">
+            <EntityTypeMapping TypeName="CQModel.CQGKPIChannel">
+              <MappingFragment StoreEntitySet="CQGKPIChannel">
+                <ScalarProperty Name="OutWgt" ColumnName="OutWgt" />
+                <ScalarProperty Name="InWgt" ColumnName="InWgt" />
+                <ScalarProperty Name="CQCID" ColumnName="CQCID" />
+                <ScalarProperty Name="CQGKPIID" ColumnName="CQGKPIID" />
+                <ScalarProperty Name="CQGKPICID" ColumnName="CQGKPICID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CQKPIChannels">
+            <EntityTypeMapping TypeName="CQModel.CQKPIChannel">
+              <MappingFragment StoreEntitySet="CQKPIChannel">
+                <ScalarProperty Name="OutWgt" ColumnName="OutWgt" />
+                <ScalarProperty Name="InWgt" ColumnName="InWgt" />
+                <ScalarProperty Name="CQCID" ColumnName="CQCID" />
+                <ScalarProperty Name="CQKPIID" ColumnName="CQKPIID" />
+                <ScalarProperty Name="CQKPICID" ColumnName="CQKPICID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CQTNeeds">
+            <EntityTypeMapping TypeName="CQModel.CQTNeed">
+              <MappingFragment StoreEntitySet="CQTNeeds">
+                <ScalarProperty Name="TNStatus" ColumnName="TNStatus" />
+                <ScalarProperty Name="TNLevel" ColumnName="TNLevel" />
+                <ScalarProperty Name="AgentLogin" ColumnName="AgentLogin" />
+                <ScalarProperty Name="CompID" ColumnName="CompID" />
+                <ScalarProperty Name="TNID" ColumnName="TNID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

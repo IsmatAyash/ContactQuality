@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ContactQuality.Models.CQGKPI>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutParameters.cshtml";
+}
+
+<h2>Contact Quality KPI Groups</h2>
+
+@using (Html.BeginForm("Index", "CQGKPI", FormMethod.Get))
+{
+    <ul class="nav nav-pills">
+        <li>
+            <a href='@Url.Action("Create", "CQGKPI")'>
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </li>
+    </ul>
+}
+
+<table class="table-condensed" border="1">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CQGKPIName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CQGKPIInitials)
+        </th>
+        <th>Applied Channels</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CQGKPIName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CQGKPIInitials)
+        </td>
+        <td>
+            <table class="table-condensed" style="font-size:smaller">
+                <tr style="background-color:lightblue">
+                    <th>Channel</th>
+                    <th>InWgt</th>
+                    <th>OutWgt</th>
+                </tr>
+                @foreach (var channel in item.CQGKPIChannels)
+                {
+                    <tr>
+                        <td style="font-weight:bold">
+                            @Html.DisplayFor(modelItem => channel.CQChannel.CQChannelName)
+                        </td>
+                        <td>@string.Format("{0:P0}", channel.InWgt).Replace(" %", "%")</td>
+                        <td>@string.Format("{0:P0}", channel.OutWgt).Replace(" %", "%")</td>
+                    </tr>
+                }
+            </table>
+        </td>
+        <td>
+            <a href='@Url.Action("Edit", "CQGKPI", new { id = item.CQGKPIID })'>
+                <i class="glyphicon glyphicon-pencil">&nbsp;</i>
+            </a>
+            <a href='@Url.Action("Details", "CQGKPI", new { id = item.CQGKPIID })'>
+                <i class="glyphicon glyphicon-list-alt">&nbsp;</i>
+            </a>
+            <a href='@Url.Action("Delete", "CQGKPI", new { id = item.CQGKPIID })'>
+                <i class="glyphicon glyphicon-remove"></i>
+            </a>
+        </td>        
+    </tr>
+}
+
+</table>

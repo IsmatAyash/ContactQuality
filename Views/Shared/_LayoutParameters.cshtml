@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "_LayoutParameters";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+            <li class="active">
+                @Html.Label("Parameters", new { style= "color:whitesmoke;font-weight:bold;font-size:medium" })
+            </li>
+            <li >
+                <a href='@Url.Action("Index","CQGKPI")' style="color:whitesmoke"><i class="fa fa-group"></i>  Quality KPI Group</a>
+            </li>
+            <li class="active">
+                <a href='@Url.Action("Index","CQKPI")' style="color:whitesmoke"><i class="fa fa-key"></i>  Quality KPI </a>
+            </li>
+            <li>
+                <a href='@Url.Action("Index","CQPeriod")' style="color:whitesmoke"><i class="fa fa-clock-o"></i>  Quality Period </a>
+            </li>
+            <li>
+                <a href='@Url.Action("Index","CQChannel")' style="color:whitesmoke"><i class="fa fa-phone-square"></i>  Quality Channel </a>
+            </li>
+            <li>
+                <a href='@Url.Action("Index","Competencies")' style="color:whitesmoke"><i class="fa fa-graduation-cap"></i>  Competencies </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+</div>
+

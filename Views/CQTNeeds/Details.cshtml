@@ -1,0 +1,54 @@
+﻿@model ContactQuality.Models.CQTNeed
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>CQTNeed</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TNLevel)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TNLevel)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TNStatus)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TNStatus)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Competency.CompName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Competency.CompName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Employee.LastName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Employee.LastName)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.TNID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

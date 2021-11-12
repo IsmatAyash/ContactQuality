@@ -1,0 +1,49 @@
+﻿@model ContactQuality.Models.CQGKPI
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CQGKPI</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CQGKPIName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CQGKPIName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CQGKPIInboundWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CQGKPIInboundWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CQGKPIOutboundWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CQGKPIOutboundWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CQGKPIInitials)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CQGKPIInitials)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CQGKPIID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

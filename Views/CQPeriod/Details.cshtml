@@ -1,0 +1,27 @@
+﻿@model ContactQuality.Models.CQPeriod
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutParameters.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CQPeriod</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CQPeriodName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CQPeriodName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CQPID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

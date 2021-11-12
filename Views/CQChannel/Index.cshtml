@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ContactQuality.Models.CQChannel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutParameters.cshtml";
+}
+
+<h2>Contact Quality Channel</h2>
+
+@using (Html.BeginForm("Index", "CQChannel", FormMethod.Get))
+{
+    <ul class="nav nav-pills">
+        <li>
+            <a href='@Url.Action("Create", "CQChannel")'>
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </li>
+    </ul>
+}
+<table class="table-condensed" border="1">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CQChannelName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CQChannelName)
+        </td>
+        <td>
+            <a href='@Url.Action("Edit", "CQChannel", new { id = item.CQCID })'>
+                <i class="glyphicon glyphicon-pencil">&nbsp;</i>
+            </a>
+            <a href='@Url.Action("Details", "CQChannel", new { id = item.CQCID })'>
+                <i class="glyphicon glyphicon-list-alt">&nbsp;</i>
+            </a>
+            <a href='@Url.Action("Delete", "CQChannel", new { id = item.CQCID })'>
+                <i class="glyphicon glyphicon-remove"></i>
+            </a>
+        </td>        
+    </tr>
+}
+</table>

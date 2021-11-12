@@ -1,0 +1,66 @@
+﻿@model ContactQuality.Models.CQGKPI
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutParameters.cshtml";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.CQGKPIName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CQGKPIName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CQGKPIName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CQGKPIInitials, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CQGKPIInitials, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CQGKPIInitials, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-lg-offset-2 col-md-10">
+            <table class="table-condensed" border="1" style="font-size:smaller">
+                <tr>
+                    <th colspan="3" style="background-color:lightgray">Applied Channels and Weights</th>
+                </tr>
+                <tr style="background-color:lightgrey">
+                    <th>Channel</th>
+                    <th>In Weight</th>
+                    <th>Out Weight</th>
+                </tr>
+                @foreach (var channel in (List<ContactQuality.Models.CQGKPIChannel>)@ViewBag.CQGKPIChannels)
+                {
+                    @Html.HiddenFor(model => channel.CQCID)
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(model => channel.Assigned)
+                            @Html.DisplayFor(model => channel.ChannelName)
+                        </td>
+                        <td>@Html.EditorFor(model => channel.InWgt)</td>
+                        <td>@Html.EditorFor(model => channel.OutWgt)</td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+                &nbsp;&nbsp;
+                @Html.ActionLink("Back ", "Index")
+            </div>
+        </div>
+    </div>
+}

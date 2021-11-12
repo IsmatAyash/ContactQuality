@@ -1,0 +1,8 @@
+﻿
+<div>
+    <h2>PlayRecording</h2>
+    <a href="@Url.Action("Index", "CQHDR", new { hdrId = Session["CQHDRID"], agentLogin = @Session["AgtLogin"] })"><span class="glyphicon glyphicon-arrow-left"> Back</span></a>
+</div>
+<div>
+    <video controls="controls" src="~/Content/Recordings/@ViewBag.Clip" width="800" height="480" />
+</div>

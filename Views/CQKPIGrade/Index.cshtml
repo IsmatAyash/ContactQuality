@@ -1,0 +1,224 @@
+﻿@model IList<ContactQuality.ViewModels.QualitySheet>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href='@Url.Action("Index", "CQHDR", new { hdrId = Session["CQHDRID"], detId = Model.FirstOrDefault().KPIDetID, agentLogin = Session["AgtLogin"], cqyear = Session["CqYear"] })'>
+                <span class="glyphicon glyphicon-arrow-left"></span>
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+           <form class="navbar-form navbar-left" role="search" method="get">
+                <div class="form-group">
+                    <div class="form-control">
+                        @Session["AgtName"]
+                    </div>
+                </div>
+                <button id="submitButton" type="submit" class="btn btn-primary" form="editForm">Save Grades</button>
+            </form>
+            <p class="navbar-text navbar-right" style="font-weight:800;color:darkblue">Contact Grade: @ViewBag.ContactFinalGrade.ToString("0%") @ViewBag.GradeComment</p>
+            <p class="navbar-text navbar-right" style="font-weight:800">Contact Title: @ViewBag.ContactTitle</p>
+        </div>
+
+        @using (Html.BeginForm("Index", "CQKPIGrade", FormMethod.Post, new { id = "editForm" }))
+        {
+            var groupGrades = ViewData["GroupGrades"] as Dictionary<string, Tuple<string, string>>;
+                <div>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist" style="background-color:lightgray;font-family:Calibri;font-size:smaller">
+                        @foreach (var item in groupGrades)
+                        {
+                            if (item.Key == "GC")
+                                {<li role="presentation" class="active"><a href="#@item.Key" aria-controls="@item.Key" role="tab" data-toggle="tab">@item.Value.Item1 (@item.Value.Item2)</a></li>}
+                            else
+                                {<li role="presentation"><a href="#@item.Key" aria-controls="@item.Key" role="tab" data-toggle="tab">@item.Value.Item1 (@item.Value.Item2)</a></li>}
+                        }
+                    </ul>
+                    <div class="tab-content">
+                        @foreach(var item in groupGrades)
+                        {
+                            if (item.Key == "GC")
+                                {<div role="tabpanel" class="tab-pane fade in active" id="@item.Key">@DisplayData(item.Key)</div>}
+                            else
+                                {<div role="tabpanel" class="tab-pane fade" id="@item.Key">@DisplayData(item.Key)</div>}
+                        }
+                    </div>
+                </div>
+                @*<button name="submitButton" type="submit" class="btn btn-primary">Save Grades</button>*@
+        }
+    </div> <!--container-->
+</div> <!--navbar-->
+
+@helper DisplayData(string group)
+{
+<table>
+    <tr>
+        <th valign="top">
+            <table class="table-condensed table-hover" border="1" style="font-family:Calibri; font-size:small; border-color:lightgray">
+                <tr style="background-color:lightblue">
+                    <th>Foundation</th>
+                    <th>N/A</th>
+                    <th>No</th>
+                    <th>Yes</th>
+                    <th>Remark</th>
+                </tr>
+
+                 @for (int i = 0; i < Model.Count; i++)
+                 {
+                    @Html.HiddenFor(m => m[i].KPIGradeID)
+                    @Html.HiddenFor(m => m[i].KPIDetID)
+                    @Html.HiddenFor(m => m[i].KPIHDRID)
+                    @Html.HiddenFor(m => m[i].GrpInitials)
+                    @Html.HiddenFor(m => m[i].KpiInWgt)
+                    @Html.HiddenFor(m => m[i].KpiOutWgt)
+                    @Html.HiddenFor(m => m[i].MaxGrade)
+                    @Html.HiddenFor(m => m[i].GradeType)
+                     if (Model[i].GrpInitials == group && Model[i].GradeType == "Foundation")
+                     {
+                         int[] yesno = { 0, 1, 3 };
+                        <tr>
+                            <td><span class="wrap_@Model[i].KpiRadioBtnID">@Html.DisplayFor(m => m[i].KPIname)</span></td>
+                            @foreach (int n in yesno)
+                            {
+                                <td>@Html.RadioButtonFor(m => m[i].selectedGrade, n, new { @class = Model[i].KpiRadioBtnID })</td>
+                            }
+                            <td>@Html.EditorFor(m => m[i].EvaluatorRemark)</td>
+                        </tr>
+                     }
+                 }
+            </table>
+        </th>
+        <th></th>
+        <th valign="top">
+            <table class="table-condensed table-hover" border="1" style="font-family:Calibri; font-size:small; border-color:lightgray">
+                <tr style="background-color:lightsteelblue; align-content:center">
+                    <th>Finesse</th>
+                    <th>N/A</th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>Remark</th>
+                </tr>
+                @for (int j = 0; j < Model.Count; j++)
+                {
+                    @Html.HiddenFor(m => m[j].KPIGradeID)
+                    @Html.HiddenFor(m => m[j].KPIDetID)
+                    @Html.HiddenFor(m => m[j].KPIHDRID)
+                    @Html.HiddenFor(m => m[j].GrpInitials)
+                    @Html.HiddenFor(m => m[j].KpiInWgt)
+                    @Html.HiddenFor(m => m[j].KpiOutWgt)
+                    @Html.HiddenFor(m => m[j].MaxGrade)
+                    @Html.HiddenFor(m => m[j].GradeType)
+                    if (Model[j].GrpInitials == group && Model[j].GradeType != "Foundation")
+                    {
+                        <tr>
+                            <td><span class="wrap_@Model[j].KpiRadioBtnID">@Html.DisplayFor(m => m[j].KPIname)</span></td>
+                            @for (int f = 0; f <= Model[j].MaxGrade; f++)
+                            {
+                                <td style="align-content:center">
+                                    @Html.RadioButtonFor(m => m[j].selectedGrade, f, new { @class = Model[j].KpiRadioBtnID })
+                                </td>
+                            }
+                            <td>@Html.EditorFor(m => m[j].EvaluatorRemark)</td>
+                        </tr>
+                    }
+                }
+            </table>
+        </th>
+    </tr>
+</table>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Submit the form upon clicking the Save Grades button which is outside the form
+        $('#submitButton').click(function () {
+            $('#editForm').submit();
+        });
+
+        var ce01 = $('input[class=CE01]:radio:checked').val();
+        var ce03 = $('input[class=CE03]:radio:checked').val();
+        var ce07 = $('input[class=CE07]:radio:checked').val();
+        var ss01 = $('input[class=SS01]:radio:checked').val();
+        $(".CE02").attr('disabled', (ce01 == 0));
+        $(".CE04").attr('disabled', (ce03 == 0));
+        $(".CE08").attr('disabled', (ce07 == 0));
+        $(".CE09").attr('disabled', (ce07 == 0));
+        $(".SS02").attr('disabled', (ss01 == 0));
+        $(".SS03").attr('disabled', (ss01 == 0));
+        (ce01 == 0) ? $(".wrap_CE02").css('opacity', '.2') : $(".wrap_CE02").css('opacity', '1');
+        (ce03 == 0) ? $(".wrap_CE04").css('opacity', '.2') : $(".wrap_CE04").css('opacity', '1');
+        if (ce07 == 0) {
+            $(".wrap_CE08").css('opacity', '.2');
+            $(".wrap_CE09").css('opacity', '.2');
+        } else {
+            $(".wrap_CE08").css('opacity', '1');
+            $(".wrap_CE09").css('opacity', '1');
+        }
+        if (ss01 == 0) {
+            $(".wrap_SS02").css('opacity', '.2');
+            $(".wrap_SS03").css('opacity', '.2');
+        } else {
+            $(".wrap_SS02").css('opacity', '1');
+            $(".wrap_SS03").css('opacity', '1');
+        }
+        // Disable radio buttons function on Check Disable radio button.
+        $("form input[class=CE01]:radio").change(function () {
+            if ($(this).val() == 0) {
+                $(".CE02").attr('disabled', true);
+                $(".wrap_CE02").css('opacity', '.2');
+            }
+            else {
+                $(".CE02").attr('disabled', false);
+                $(".wrap_CE02").css('opacity', '1');
+            }
+        });
+        $("form input[class=CE03]:radio").change(function () {
+            if ($(this).val() == 0) {
+                $(".CE04").attr('disabled', true);
+                $(".wrap_CE04").css('opacity', '.2');
+            }
+            else {
+                $(".CE04").attr('disabled', false);
+                $(".wrap_CE04").css('opacity', '1');
+            }
+        });
+        $("form input[class=SS01]:radio").change(function () {
+            if ($(this).val() == 0) {
+                $(".SS02").attr('disabled', true);
+                $(".SS03").attr('disabled', true);
+                $(".wrap_SS02").css('opacity', '.2');
+                $(".wrap_SS03").css('opacity', '.2');
+            }
+            else {
+                $(".SS02").attr('disabled', false);
+                $(".SS03").attr('disabled', false);
+                $(".wrap_SS02").css('opacity', '1');
+                $(".wrap_SS03").css('opacity', '1');
+            }
+        });
+        $("form input[class=CE07]:radio").change(function () {
+            if ($(this).val() == 0) {
+                $(".CE08").attr('disabled', true);
+                $(".CE09").attr('disabled', true);
+                $(".wrap_CE08").css('opacity', '.2');
+                $(".wrap_CE09").css('opacity', '.2');
+            }
+            else {
+                $(".CE08").attr('disabled', false);
+                $(".CE09").attr('disabled', false);
+                $(".wrap_CE08").css('opacity', '1');
+                $(".wrap_CE09").css('opacity', '1');
+            }
+        });
+    });
+</script>

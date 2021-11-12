@@ -1,0 +1,564 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FC1807AD-F877-43DD-B7B2-9433EA9AEF67}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ContactQuality</RootNamespace>
+    <AssemblyName>ContactQuality</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CompetenciesController.cs" />
+    <Compile Include="Controllers\CQChannelController.cs" />
+    <Compile Include="Controllers\CQDETController.cs" />
+    <Compile Include="Controllers\CQGKPIController.cs" />
+    <Compile Include="Controllers\CQHDRController.cs" />
+    <Compile Include="Controllers\CQKPIController.cs" />
+    <Compile Include="Controllers\CQKPIGradeController.cs" />
+    <Compile Include="Controllers\CQPeriodController.cs" />
+    <Compile Include="Controllers\CQTNeedsController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\TeamController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Competency.cs">
+      <DependentUpon>CQModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CQChannel.cs">
+      <DependentUpon>CQModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CQDET.cs">
+      <DependentUpon>CQModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CQGKPI.cs">
+      <DependentUpon>CQModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CQGKPIChannel.cs">
+      <DependentUpon>CQModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CQHDR.cs">
+      <DependentUpon>CQModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CQKPI.cs">
+      <DependentUpon>CQModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CQKPIChannel.cs">
+      <DependentUpon>CQModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CQKPIGrade.cs">
+      <DependentUpon>CQModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CQModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CQModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CQModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CQModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CQModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CQModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CQPeriod.cs">
+      <DependentUpon>CQModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CQTNeed.cs">
+      <DependentUpon>CQModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee.cs">
+      <DependentUpon>CQModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Metadata.cs" />
+    <Compile Include="Models\PartialClasses.cs" />
+    <Compile Include="Models\Team.cs">
+      <DependentUpon>CQModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Title.cs">
+      <DependentUpon>CQModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AgentQualityData.cs" />
+    <Compile Include="ViewModels\AssignedChannelData.cs" />
+    <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\HdrTneedsViewModel.cs" />
+    <Compile Include="ViewModels\QualitySheet.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\AllDatabaseWithParam.txt" />
+    <Content Include="App_Data\DropCreateHDRDETGRADEScript.txt" />
+    <Content Include="App_Data\PopulateQulaityData.txt" />
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\morris.css" />
+    <Content Include="Content\Recordings\Dummy.txt" />
+    <Content Include="Content\sb-admin.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="css\bootstrap-rtl.css" />
+    <Content Include="css\bootstrap-rtl.min.css" />
+    <Content Include="css\plugins\morris.css" />
+    <Content Include="css\sb-admin-rtl.css" />
+    <Content Include="css\sb-admin.css" />
+    <Content Include="font-awesome\css\font-awesome.css" />
+    <Content Include="font-awesome\css\font-awesome.min.css" />
+    <Content Include="font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\plugins\flot\excanvas.min.js" />
+    <Content Include="js\plugins\flot\flot-data.js" />
+    <Content Include="js\plugins\flot\jquery.flot.js" />
+    <Content Include="js\plugins\flot\jquery.flot.pie.js" />
+    <Content Include="js\plugins\flot\jquery.flot.resize.js" />
+    <Content Include="js\plugins\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="js\plugins\morris\morris-data.js" />
+    <Content Include="js\plugins\morris\morris.js" />
+    <Content Include="js\plugins\morris\morris.min.js" />
+    <Content Include="js\plugins\morris\raphael.min.js" />
+    <Content Include="Models\CQModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CQModel.edmx</DependentUpon>
+      <LastGenOutput>CQModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\CQModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CQModel.edmx</DependentUpon>
+      <LastGenOutput>CQModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\Highcharts\js\adapters\standalone-framework.js" />
+    <Content Include="Scripts\Highcharts\js\adapters\standalone-framework.src.js" />
+    <Content Include="Scripts\Highcharts\js\highcharts-3d.js" />
+    <Content Include="Scripts\Highcharts\js\highcharts-3d.src.js" />
+    <Content Include="Scripts\Highcharts\js\highcharts-all.js" />
+    <Content Include="Scripts\Highcharts\js\highcharts-more.js" />
+    <Content Include="Scripts\Highcharts\js\highcharts-more.src.js" />
+    <Content Include="Scripts\Highcharts\js\highcharts.js" />
+    <Content Include="Scripts\Highcharts\js\highcharts.src.js" />
+    <Content Include="Scripts\Highcharts\js\modules\canvas-tools.js" />
+    <Content Include="Scripts\Highcharts\js\modules\canvas-tools.src.js" />
+    <Content Include="Scripts\Highcharts\js\modules\data.js" />
+    <Content Include="Scripts\Highcharts\js\modules\data.src.js" />
+    <Content Include="Scripts\Highcharts\js\modules\drilldown.js" />
+    <Content Include="Scripts\Highcharts\js\modules\drilldown.src.js" />
+    <Content Include="Scripts\Highcharts\js\modules\exporting.js" />
+    <Content Include="Scripts\Highcharts\js\modules\exporting.src.js" />
+    <Content Include="Scripts\Highcharts\js\modules\funnel.js" />
+    <Content Include="Scripts\Highcharts\js\modules\funnel.src.js" />
+    <Content Include="Scripts\Highcharts\js\modules\heatmap.js" />
+    <Content Include="Scripts\Highcharts\js\modules\heatmap.src.js" />
+    <Content Include="Scripts\Highcharts\js\modules\no-data-to-display.js" />
+    <Content Include="Scripts\Highcharts\js\modules\no-data-to-display.src.js" />
+    <Content Include="Scripts\Highcharts\js\modules\solid-gauge.js" />
+    <Content Include="Scripts\Highcharts\js\modules\solid-gauge.src.js" />
+    <Content Include="Scripts\Highcharts\js\themes\dark-blue.js" />
+    <Content Include="Scripts\Highcharts\js\themes\dark-green.js" />
+    <Content Include="Scripts\Highcharts\js\themes\dark-unica.js" />
+    <Content Include="Scripts\Highcharts\js\themes\gray.js" />
+    <Content Include="Scripts\Highcharts\js\themes\grid-light.js" />
+    <Content Include="Scripts\Highcharts\js\themes\grid.js" />
+    <Content Include="Scripts\Highcharts\js\themes\sand-signika.js" />
+    <Content Include="Scripts\Highcharts\js\themes\skies.js" />
+    <Content Include="stylesheets\bootstrap\sb-admin.css" />
+    <Content Include="stylesheets\bootstrap\simple-sidebar.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\bootstrap\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="javascripts\bootstrap-sprockets.js" />
+    <Content Include="javascripts\bootstrap.js" />
+    <Content Include="javascripts\bootstrap.min.js" />
+    <Content Include="javascripts\bootstrap\affix.js" />
+    <Content Include="javascripts\bootstrap\alert.js" />
+    <Content Include="javascripts\bootstrap\button.js" />
+    <Content Include="javascripts\bootstrap\carousel.js" />
+    <Content Include="javascripts\bootstrap\collapse.js" />
+    <Content Include="javascripts\bootstrap\dropdown.js" />
+    <Content Include="javascripts\bootstrap\modal.js" />
+    <Content Include="javascripts\bootstrap\popover.js" />
+    <Content Include="javascripts\bootstrap\scrollspy.js" />
+    <Content Include="javascripts\bootstrap\tab.js" />
+    <Content Include="javascripts\bootstrap\tooltip.js" />
+    <Content Include="javascripts\bootstrap\transition.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="images\.keep" />
+    <Content Include="fonts\bootstrap\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\bootstrap\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\bootstrap\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\bootstrap\glyphicons-halflings-regular.eot" />
+    <EntityDeploy Include="Models\CQModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CQModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\CQModel.edmx.diagram">
+      <DependentUpon>CQModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="font-awesome\less\bordered-pulled.less" />
+    <Content Include="font-awesome\less\core.less" />
+    <Content Include="font-awesome\less\fixed-width.less" />
+    <Content Include="font-awesome\less\font-awesome.less" />
+    <Content Include="font-awesome\less\icons.less" />
+    <Content Include="font-awesome\less\larger.less" />
+    <Content Include="font-awesome\less\list.less" />
+    <Content Include="font-awesome\less\mixins.less" />
+    <Content Include="font-awesome\less\path.less" />
+    <Content Include="font-awesome\less\rotated-flipped.less" />
+    <Content Include="font-awesome\less\spinning.less" />
+    <Content Include="font-awesome\less\stacked.less" />
+    <Content Include="font-awesome\less\variables.less" />
+    <Content Include="font-awesome\scss\font-awesome.scss" />
+    <Content Include="font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="font-awesome\scss\_core.scss" />
+    <Content Include="font-awesome\scss\_fixed-width.scss" />
+    <Content Include="font-awesome\scss\_icons.scss" />
+    <Content Include="font-awesome\scss\_larger.scss" />
+    <Content Include="font-awesome\scss\_list.scss" />
+    <Content Include="font-awesome\scss\_mixins.scss" />
+    <Content Include="font-awesome\scss\_path.scss" />
+    <Content Include="font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="font-awesome\scss\_spinning.scss" />
+    <Content Include="font-awesome\scss\_stacked.scss" />
+    <Content Include="font-awesome\scss\_variables.scss" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <None Include="Properties\PublishProfiles\ContactQualityPublish.pubxml" />
+    <None Include="Properties\PublishProfiles\ContactQualityStraightPublishtoServer.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="stylesheets\_bootstrap.scss" />
+    <Content Include="stylesheets\_bootstrap-sprockets.scss" />
+    <Content Include="stylesheets\_bootstrap-mincer.scss" />
+    <Content Include="stylesheets\_bootstrap-compass.scss" />
+    <Content Include="stylesheets\bootstrap\_wells.scss" />
+    <Content Include="stylesheets\bootstrap\_variables.scss" />
+    <Content Include="stylesheets\bootstrap\_utilities.scss" />
+    <Content Include="stylesheets\bootstrap\_type.scss" />
+    <Content Include="stylesheets\bootstrap\_tooltip.scss" />
+    <Content Include="stylesheets\bootstrap\_thumbnails.scss" />
+    <Content Include="stylesheets\bootstrap\_theme.scss" />
+    <Content Include="stylesheets\bootstrap\_tables.scss" />
+    <Content Include="stylesheets\bootstrap\_scaffolding.scss" />
+    <Content Include="stylesheets\bootstrap\_responsive-utilities.scss" />
+    <Content Include="stylesheets\bootstrap\_responsive-embed.scss" />
+    <Content Include="stylesheets\bootstrap\_progress-bars.scss" />
+    <Content Include="stylesheets\bootstrap\_print.scss" />
+    <Content Include="stylesheets\bootstrap\_popovers.scss" />
+    <Content Include="stylesheets\bootstrap\_panels.scss" />
+    <Content Include="stylesheets\bootstrap\_pagination.scss" />
+    <Content Include="stylesheets\bootstrap\_pager.scss" />
+    <Content Include="stylesheets\bootstrap\_normalize.scss" />
+    <Content Include="stylesheets\bootstrap\_navs.scss" />
+    <Content Include="stylesheets\bootstrap\_navbar.scss" />
+    <Content Include="stylesheets\bootstrap\_modals.scss" />
+    <Content Include="stylesheets\bootstrap\_mixins.scss" />
+    <Content Include="stylesheets\bootstrap\_media.scss" />
+    <Content Include="stylesheets\bootstrap\_list-group.scss" />
+    <Content Include="stylesheets\bootstrap\_labels.scss" />
+    <Content Include="stylesheets\bootstrap\_jumbotron.scss" />
+    <Content Include="stylesheets\bootstrap\_input-groups.scss" />
+    <Content Include="stylesheets\bootstrap\_grid.scss" />
+    <Content Include="stylesheets\bootstrap\_glyphicons.scss" />
+    <Content Include="stylesheets\bootstrap\_forms.scss" />
+    <Content Include="stylesheets\bootstrap\_dropdowns.scss" />
+    <Content Include="stylesheets\bootstrap\_component-animations.scss" />
+    <Content Include="stylesheets\bootstrap\_code.scss" />
+    <Content Include="stylesheets\bootstrap\_close.scss" />
+    <Content Include="stylesheets\bootstrap\_carousel.scss" />
+    <Content Include="stylesheets\bootstrap\_buttons.scss" />
+    <Content Include="stylesheets\bootstrap\_button-groups.scss" />
+    <Content Include="stylesheets\bootstrap\_breadcrumbs.scss" />
+    <Content Include="stylesheets\bootstrap\_badges.scss" />
+    <Content Include="stylesheets\bootstrap\_alerts.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_vendor-prefixes.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_text-overflow.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_text-emphasis.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_table-row.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_tab-focus.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_size.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_responsive-visibility.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_resize.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_reset-text.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_reset-filter.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_progress-bar.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_panels.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_pagination.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_opacity.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_nav-vertical-align.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_nav-divider.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_list-group.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_labels.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_image.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_hide-text.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_grid.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_grid-framework.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_gradients.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_forms.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_center-block.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_buttons.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_background-variant.scss" />
+    <Content Include="stylesheets\bootstrap\mixins\_alerts.scss" />
+    <Content Include="Views\Employee\Create.cshtml" />
+    <Content Include="Views\Employee\Delete.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
+    <Content Include="Views\Employee\Edit.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\CQGKPI\Create.cshtml" />
+    <Content Include="Views\CQGKPI\Delete.cshtml" />
+    <Content Include="Views\CQGKPI\Details.cshtml" />
+    <Content Include="Views\CQGKPI\Edit.cshtml" />
+    <Content Include="Views\CQGKPI\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutParameters.cshtml" />
+    <Content Include="Views\Home\Parameter.cshtml" />
+    <Content Include="Views\CQPeriod\Create.cshtml" />
+    <Content Include="Views\CQPeriod\Delete.cshtml" />
+    <Content Include="Views\CQPeriod\Details.cshtml" />
+    <Content Include="Views\CQPeriod\Edit.cshtml" />
+    <Content Include="Views\CQPeriod\Index.cshtml" />
+    <Content Include="Views\CQChannel\Create.cshtml" />
+    <Content Include="Views\CQChannel\Delete.cshtml" />
+    <Content Include="Views\CQChannel\Details.cshtml" />
+    <Content Include="Views\CQChannel\Edit.cshtml" />
+    <Content Include="Views\CQChannel\Index.cshtml" />
+    <Content Include="Views\CQKPI\Create.cshtml" />
+    <Content Include="Views\CQKPI\Delete.cshtml" />
+    <Content Include="Views\CQKPI\Edit.cshtml" />
+    <Content Include="Views\CQKPI\Index.cshtml" />
+    <Content Include="Views\CQHDR\Create.cshtml" />
+    <Content Include="Views\CQHDR\Delete.cshtml" />
+    <Content Include="Views\CQHDR\Details.cshtml" />
+    <Content Include="Views\CQHDR\Edit.cshtml" />
+    <Content Include="Views\CQHDR\Index.cshtml" />
+    <Content Include="Views\CQKPIGrade\Index.cshtml" />
+    <Content Include="Views\CQDET\Create.cshtml" />
+    <Content Include="Views\CQDET\Delete.cshtml" />
+    <Content Include="Views\CQDET\Edit.cshtml" />
+    <Content Include="Views\CQHDR\PlayRecording.cshtml" />
+    <Content Include="Views\Shared\View.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutDashboard.cshtml" />
+    <Content Include="Views\CQTNeeds\Create.cshtml" />
+    <Content Include="Views\CQTNeeds\Delete.cshtml" />
+    <Content Include="Views\CQTNeeds\Details.cshtml" />
+    <Content Include="Views\CQTNeeds\Edit.cshtml" />
+    <Content Include="Views\CQTNeeds\Index.cshtml" />
+    <Content Include="Views\Competencies\Create.cshtml" />
+    <Content Include="Views\Competencies\Delete.cshtml" />
+    <Content Include="Views\Competencies\Details.cshtml" />
+    <Content Include="Views\Competencies\Edit.cshtml" />
+    <Content Include="Views\Competencies\Index.cshtml" />
+    <Content Include="Views\Team\Teamboard.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Publish\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>60304</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:60304/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

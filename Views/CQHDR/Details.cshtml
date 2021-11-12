@@ -1,0 +1,43 @@
+﻿@model ContactQuality.Models.CQHDR
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CQHDR</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CQYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CQYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CQPeriod.CQPeriodName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CQPeriod.CQPeriodName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.LastName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CQHDRID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

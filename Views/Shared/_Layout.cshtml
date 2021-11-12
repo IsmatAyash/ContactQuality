@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Contact Quality Application</title>
+    @Styles.Render("~/stylesheets/bootstrap/sb-admin.css")
+    @Styles.Render("~/Content/css")
+    @*@Scripts.Render("~/Scripts/jquery-1.10.2.min.js")*@
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+
+
+    <link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Quality Assessment", "Dashboard", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Dashboard", "Home")</li>
+                    <li>@Html.ActionLink("Contact Quality", "Index", "CQHDR")</li>
+                    <li>@Html.ActionLink("Parameters", "Parameter", "Home")</li>
+                    <li>@Html.ActionLink("Employee", "Index", "Employee")</li>
+                    <li>@Html.ActionLink("Training Needs", "Index", "CQTNeeds")</li>
+                </ul>
+                <p class="nav navbar-text navbar-right"><span class="glyphicon glyphicon-user"></span> @User.Identity.Name.Substring(7)</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        @RenderBody()
+        <hr />
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

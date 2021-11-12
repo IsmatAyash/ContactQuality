@@ -1,0 +1,27 @@
+﻿@model ContactQuality.Models.CQChannel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutParameters.cshtml";
+}
+
+<h2>Channel Details</h2>
+
+<div>
+    <h4>CQChannel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CQChannelName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CQChannelName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CQCID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

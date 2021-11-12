@@ -1,0 +1,87 @@
+﻿@model IEnumerable<ContactQuality.Models.CQKPI>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutParameters.cshtml";
+}
+
+@using (Html.BeginForm("Index", "CQKPI", FormMethod.Get))
+{
+    <ul class="nav nav-pills">
+        <li>
+            <a href='@Url.Action("Create", "CQKPI")'>
+                <span class="glyphicon glyphicon-plus"> Contact Quality KPI</span>
+            </a>
+        </li>
+        
+    </ul>
+}
+
+<table class="table-condensed" border="1" style="font-family:Calibri;font-size:small">
+    <tr style="background-color:lightgray">
+        <th>
+            @Html.DisplayNameFor(model => model.CQKPIName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CQGKPI.CQGKPIInitials)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CQKPIType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CQKPIMaxGrade)
+        </th>
+        <th>Applied Channels</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CQKPIName)
+        </td>
+        <th>
+            @Html.DisplayFor(modelItem => item.CQGKPI.CQGKPIInitials)
+        </th>
+        <td>
+            @Html.DisplayFor(modelItem => item.CQKPIType)
+        </td>
+        <td align="center">
+            @Html.DisplayFor(modelItem => item.CQKPIMaxGrade)
+        </td>
+        <td>
+            <table class="table-condensed" style="font-size:smaller">
+                <tr style="background-color:lightblue">
+                    <th>Channel</th>
+                    <th>InWgt</th>
+                    <th>OutWgt</th>
+                </tr>
+                @foreach (var channel in item.CQKPIChannels)
+                {
+                        <tr>
+                            <td style="font-weight:bold">
+                                @Html.DisplayFor(modelItem => channel.CQChannel.CQChannelName)
+                            </td>
+                            <td>@string.Format("{0:P0}", channel.InWgt).Replace(" %", "%")</td>
+                            <td>@string.Format("{0:P0}", channel.OutWgt).Replace(" %", "%")</td>
+                        </tr>
+                }
+            </table>
+        </td>
+
+        <td>
+            <a href='@Url.Action("Edit", "CQKPI", new { id = item.CQKPIID })'>
+                <i class="glyphicon glyphicon-pencil">&nbsp;</i>
+            </a>
+            <a href='@Url.Action("Details", "CQKPI", new { id = item.CQKPIID })'>
+                <i class="glyphicon glyphicon-list-alt">&nbsp;</i>
+            </a>
+            <a href='@Url.Action("Delete", "CQKPI", new { id = item.CQKPIID })'>
+                <i class="glyphicon glyphicon-remove"></i>
+            </a>
+        </td>        
+    </tr>
+}
+
+</table>
